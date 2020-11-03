@@ -120,7 +120,7 @@ int main(int argc,char *argv[])
 				}
 				else
 				{
-					a=f[stack[stacktop-2]];
+					a=stack[stacktop-2];
 					if(a==6)//每一步非终结符都不能相邻，再前面一个应该是终结符才对 
 					{
 						printf("E\n");//违反规则时输出E  
