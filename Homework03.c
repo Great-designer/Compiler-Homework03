@@ -94,7 +94,6 @@ int main(int argc,char *argv[])
 {
 	in=fopen(argv[1],"r");
 	fscanf(in,"%s",cc);
-	printf("%s\n",cc);
 	cctop=0;
 	stacktop=0;
 	while(1)//减少用else，每个分支末尾尽可能continue或者break
@@ -134,14 +133,20 @@ int main(int argc,char *argv[])
 				break;
 			}
 			int count=6*a+b;//查错误表 
+			int flag=0;//暂存
 			int i;//回收前面故意写成ii而不写成i的伏笔 
 			for(i=0;i<7;i++)
 			{
 				if(count==error[i])
 				{
 					printf("E\n");//无法判断优先级关系时输出E
-					break;
+					flag=1;
+					break;//这个break没有跳出while
 				}
+			}
+			if(flag==1)
+			{
+				break;//这里break才能跳出while
 			}
 			if(f[a]>g[b])//仅大于的时候才规约，其他时候读入 
 			{
