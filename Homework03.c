@@ -8,12 +8,12 @@ const int star=3;
 const int right=4;
 const int ii=5;
 
-const int nn=6;//²»Çø·Ö·ÇÖÕ½á·û£¬n´ú±íetf£¬E::=E+T|T£¬T::=T*F|F£¬F::=(E)|i
+const int nn=6;//ä¸åŒºåˆ†éç»ˆç»“ç¬¦ï¼Œnä»£è¡¨etfï¼ŒE::=E+T|Tï¼ŒT::=T*F|Fï¼ŒF::=(E)|i
 
-int a,b;//×Ô±äÁ¿ 
+int a,b;//è‡ªå˜é‡ 
 
-int f[6]={0,0,2,4,5,5};//Õ»¶¥
-int g[6]={0,5,1,3,0,5};//¶ÁÈë
+int f[6]={0,0,2,4,5,5};//æ ˆé¡¶
+int g[6]={0,5,1,3,0,5};//è¯»å…¥
 
 //6a+b
 int error[7]={0,4,6,25,29,31,35};
@@ -22,7 +22,7 @@ int reserver(char b)
 {
 	switch(b)
 	{
-		case '\0'://×Ö·û´®µÄ½áÎ²£¬ÊéÉÏÎªsharp£¬CÓïÑÔÎª0 
+		case '\0'://å­—ç¬¦ä¸²çš„ç»“å°¾ï¼Œä¹¦ä¸Šä¸ºsharpï¼ŒCè¯­è¨€ä¸º0 
 		{
 			return 0;
 		}
@@ -46,7 +46,7 @@ int reserver(char b)
 		{
 			return 5;
 		}
-		default://·Ç·¨¶ÁÈë±¨´í 
+		default://éæ³•è¯»å…¥æŠ¥é”™ 
 		{
 			return -1;
 		}
@@ -54,34 +54,34 @@ int reserver(char b)
 }
 
 int stack[2048];
-int stacktop;//stacktop×ÜÖ¸ÏòÕ»¶¥ÔªËØµÄÏÂÒ»¸öÎ»ÖÃ£¬¼´stacktop-1²ÅÊÇÕ»¶¥ÔªËØ 
+int stacktop;//stacktopæ€»æŒ‡å‘æ ˆé¡¶å…ƒç´ çš„ä¸‹ä¸€ä¸ªä½ç½®ï¼Œå³stacktop-1æ‰æ˜¯æ ˆé¡¶å…ƒç´  
 
 char cc[2048];
-int cctop;//cctop×ÜÖ¸ÏòÏÂÒ»¸öÒª¶ÁµÄ×Ö·û 
+int cctop;//cctopæ€»æŒ‡å‘ä¸‹ä¸€ä¸ªè¦è¯»çš„å­—ç¬¦ 
 
-int getsym()//·µ»ØstacktopÓ¦¸Ã¼õÈ¥µÄÖµ 
+int getsym()//è¿”å›stacktopåº”è¯¥å‡å»çš„å€¼ 
 {
-	if(stacktop==0)//Õ»Îª¿Õ 
+	if(stacktop==0)//æ ˆä¸ºç©º 
 	{
 		return -1;
 	}
-	if(stack[stacktop-1]==5)//i£¬5
+	if(stack[stacktop-1]==5)//iï¼Œ5
 	{
 		return 1;
 	}
-	if(stacktop<3)//ºóÃæµÄ¹æÔòÒªÇóÕ»ÀïÖÁÉÙÓĞ3¸ö×Ö·û£¬¼´012µÄÎ»ÖÃ±ØĞëÓĞ×Ö·û£¬stacktopÖÁÉÙÊÇ3£¬±ÜÃâÏÂÒç³ö´íÎó 
+	if(stacktop<3)//åé¢çš„è§„åˆ™è¦æ±‚æ ˆé‡Œè‡³å°‘æœ‰3ä¸ªå­—ç¬¦ï¼Œå³012çš„ä½ç½®å¿…é¡»æœ‰å­—ç¬¦ï¼Œstacktopè‡³å°‘æ˜¯3ï¼Œé¿å…ä¸‹æº¢å‡ºé”™è¯¯ 
 	{
 		return -1;
 	}
-	if(stack[stacktop-1]==6&&stack[stacktop-2]==2&&stack[stacktop-3]==6)//E+T£¬626
+	if(stack[stacktop-1]==6&&stack[stacktop-2]==2&&stack[stacktop-3]==6)//E+Tï¼Œ626
 	{
 		return 3;
 	}
-	if(stack[stacktop-1]==6&&stack[stacktop-2]==3&&stack[stacktop-3]==6)//T*F£¬636
+	if(stack[stacktop-1]==6&&stack[stacktop-2]==3&&stack[stacktop-3]==6)//T*Fï¼Œ636
 	{
 		return 3;
 	}
-	if(stack[stacktop-1]==4&&stack[stacktop-2]==6&&stack[stacktop-3]==1)//(E)£¬164
+	if(stack[stacktop-1]==4&&stack[stacktop-2]==6&&stack[stacktop-3]==1)//(E)ï¼Œ164
 	{
 		return 3;
 	}
@@ -94,79 +94,80 @@ int main(int argc,char *argv[])
 {
 	in=fopen(argv[1],"r");
 	fscanf(in,"%s",cc);
+	printf("%s\n",cc);
 	cctop=0;
 	stacktop=0;
-	while(1)//¼õÉÙÓÃelse£¬Ã¿¸ö·ÖÖ§Ä©Î²¾¡¿ÉÄÜcontinue»òÕßbreak
+	while(1)//å‡å°‘ç”¨elseï¼Œæ¯ä¸ªåˆ†æ”¯æœ«å°¾å°½å¯èƒ½continueæˆ–è€…break
 	{
-		if(cctop==-1)//ÒÑ¾­¶Á¹ıÎÄ¼şÎ²ÁË
+		if(cctop==-1)//å·²ç»è¯»è¿‡æ–‡ä»¶å°¾äº†
 		{
-			printf("E\n");//¶ÁÈë³ö´íÊ±Êä³öE 
+			printf("E\n");//è¯»å…¥å‡ºé”™æ—¶è¾“å‡ºE 
 			break;
 		}
-		b=reserver(cc[cctop]);//¶ÁÈë²»Ò»¶¨ºÏ·¨
+		b=reserver(cc[cctop]);//è¯»å…¥ä¸ä¸€å®šåˆæ³•
 		if(b==-1)
 		{
-			printf("E\n");//¶ÁÈë³ö´íÊ±Êä³öE 
+			printf("E\n");//è¯»å…¥å‡ºé”™æ—¶è¾“å‡ºE 
 			break;
 		}
-		if(stacktop!=0)//Õ»·Ç¿Õ
+		if(stacktop!=0)//æ ˆéç©º
 		{
-			a=stack[stacktop-1];//´ËÊ±Õ»¶¥Ò»¶¨ÊÇºÏ·¨×Ö·ûµÄÕûÊı 
-			if(a==6)//Õ»¶¥ÊÇ·ÇÖÕ½á·û
+			a=stack[stacktop-1];//æ­¤æ—¶æ ˆé¡¶ä¸€å®šæ˜¯åˆæ³•å­—ç¬¦çš„æ•´æ•° 
+			if(a==6)//æ ˆé¡¶æ˜¯éç»ˆç»“ç¬¦
 			{
 				if(stacktop!=1)
 				{
 					a=f[stack[stacktop-2]];
-					if(a==6)//Ã¿Ò»²½·ÇÖÕ½á·û¶¼²»ÄÜÏàÁÚ£¬ÔÙÇ°ÃæÒ»¸öÓ¦¸ÃÊÇÖÕ½á·û²Å¶Ô 
+					if(a==6)//æ¯ä¸€æ­¥éç»ˆç»“ç¬¦éƒ½ä¸èƒ½ç›¸é‚»ï¼Œå†å‰é¢ä¸€ä¸ªåº”è¯¥æ˜¯ç»ˆç»“ç¬¦æ‰å¯¹ 
 					{
-						printf("E\n");//Î¥·´¹æÔòÊ±Êä³öE  
+						printf("E\n");//è¿åè§„åˆ™æ—¶è¾“å‡ºE  
 						break;
 					}
 				}
 				else
 				{
-					a=0;//±íÊ¾Ç°Ò»¸öÎ»ÖÃÓ¦¸ÃÊÇsharp 
+					a=0;//è¡¨ç¤ºå‰ä¸€ä¸ªä½ç½®åº”è¯¥æ˜¯sharp 
 				}
 			}
-			if(a==0&&b==0&&stack[stacktop-1]==6&&stacktop==1)//Õû¸ö³ÌĞòË³Àû½áÊø 
+			if(a==0&&b==0&&stack[stacktop-1]==6&&stacktop==1)//æ•´ä¸ªç¨‹åºé¡ºåˆ©ç»“æŸ 
 			{
 				break;
 			}
-			int count=6*a+b;//²é´íÎó±í 
-			int i;//»ØÊÕÇ°Ãæ¹ÊÒâĞ´³Éii¶ø²»Ğ´³ÉiµÄ·ü±Ê 
+			int count=6*a+b;//æŸ¥é”™è¯¯è¡¨ 
+			int i;//å›æ”¶å‰é¢æ•…æ„å†™æˆiiè€Œä¸å†™æˆiçš„ä¼ç¬” 
 			for(i=0;i<7;i++)
 			{
 				if(count==error[i])
 				{
-					printf("E\n");//ÎŞ·¨ÅĞ¶ÏÓÅÏÈ¼¶¹ØÏµÊ±Êä³öE
+					printf("E\n");//æ— æ³•åˆ¤æ–­ä¼˜å…ˆçº§å…³ç³»æ—¶è¾“å‡ºE
 					break;
 				}
 			}
-			if(f[a]>g[b])//½ö´óÓÚµÄÊ±ºò²Å¹æÔ¼£¬ÆäËûÊ±ºò¶ÁÈë 
+			if(f[a]>g[b])//ä»…å¤§äºçš„æ—¶å€™æ‰è§„çº¦ï¼Œå…¶ä»–æ—¶å€™è¯»å…¥ 
 			{
 				int rr=getsym();
 				if(rr==-1)
 				{
-					printf("RE\n");//¹æÔ¼Ê§°ÜÊ±Êä³öRE 
+					printf("RE\n");//è§„çº¦å¤±è´¥æ—¶è¾“å‡ºRE 
 					break;
 				}
-				printf("R\n");//¹æÔ¼³É¹¦Ê±Êä³öR
+				printf("R\n");//è§„çº¦æˆåŠŸæ—¶è¾“å‡ºR
 				stacktop-=rr;
-				stack[stacktop]=6;//·ÇÖÕ½á·ûºÅ 
+				stack[stacktop]=6;//éç»ˆç»“ç¬¦å· 
 				stacktop++;
 				continue;
 			}
 		}
 		stack[stacktop]=b;
 		stacktop++;
-		if(cc[cctop]!='\0')//Ã»¶ÁÈëÎÄ¼şÎ²×Ö·ûµÄÊ±ºò²ÅÒª±¨¶ÁÈë 
+		if(cc[cctop]!='\0')//æ²¡è¯»å…¥æ–‡ä»¶å°¾å­—ç¬¦çš„æ—¶å€™æ‰è¦æŠ¥è¯»å…¥ 
 		{
 			printf("I%c\n",cc[cctop]);
 			cctop++;
 		}
 		else
 		{
-			cctop=-1;//ÒÑ¾­¶Á¹ıÎÄ¼şÎ²ÁË 
+			cctop=-1;//å·²ç»è¯»è¿‡æ–‡ä»¶å°¾äº† 
 		}
 	}
 	fclose(in);
