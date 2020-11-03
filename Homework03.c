@@ -114,7 +114,11 @@ int main(int argc,char *argv[])
 			a=stack[stacktop-1];//此时栈顶一定是合法字符的整数 
 			if(a==6)//栈顶是非终结符
 			{
-				if(stacktop!=1)
+				if(stacktop==1)
+				{
+					a=0;//表示前一个位置应该是sharp 
+				}
+				else
 				{
 					a=f[stack[stacktop-2]];
 					if(a==6)//每一步非终结符都不能相邻，再前面一个应该是终结符才对 
@@ -123,10 +127,7 @@ int main(int argc,char *argv[])
 						break;
 					}
 				}
-				else
-				{
-					a=0;//表示前一个位置应该是sharp 
-				}
+				
 			}
 			if(a==0&&b==0&&stack[stacktop-1]==6&&stacktop==1)//整个程序顺利结束 
 			{
