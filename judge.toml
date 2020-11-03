@@ -8,5 +8,5 @@ image = { source = "dockerfile", path = ".", tag = "opg-example" }
 
 # 假如你用的是 Java
 run = [
-  "./program Homework03",
+  "./Homework03 $input",
 ]
