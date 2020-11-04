@@ -1,16 +1,6 @@
 #include<stdio.h>
 
-//# ( + * ) i 
-const int sharp=0;
-const int left=1;
-const int plus=2;
-const int star=3;
-const int right=4;
-const int ii=5;
-
-const int nn=6;//不区分非终结符，n代表etf，E::=E+T|T，T::=T*F|F，F::=(E)|i
-
-int a,b;//自变量 
+int a,b;//自变量。不区分非终结符，n代表etf，E::=E+T|T，T::=T*F|F，F::=(E)|i
 
 int f[6]={0,0,2,4,5,5};//栈顶
 int g[6]={0,5,1,3,0,5};//读入
@@ -18,6 +8,7 @@ int g[6]={0,5,1,3,0,5};//读入
 //6a+b
 int error[7]={0,4,6,25,29,31,35};
 
+//# ( + * ) i 
 int reserver(char b)
 {
 	switch(b)
@@ -135,7 +126,7 @@ int main(int argc,char *argv[])
 			}
 			int count=6*a+b;//查错误表 
 			int flag=0;//暂存
-			int i;//回收前面故意写成ii而不写成i的伏笔 
+			int i;
 			for(i=0;i<7;i++)
 			{
 				if(count==error[i])
