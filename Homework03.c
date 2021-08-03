@@ -9,9 +9,9 @@ int g[6]={0,5,1,3,0,5};//读入
 int error[7]={0,4,6,25,29,31,35};
 
 //# ( + * ) i 
-int reserver(char b)
+int reserver(char i)
 {
-	switch(b)
+	switch(i)
 	{
 		case '\0'://字符串的结尾，书上为sharp，C语言为0 
 		{
@@ -81,7 +81,7 @@ int getsym()//返回stacktop应该减去的值
 
 FILE *in;
 
-int main(int argc,char *argv[])
+int main(__attribute__((unused)) int argc,char *argv[])
 {
 	in=fopen(argv[1],"r");
 	fscanf(in,"%s",cc);
@@ -94,7 +94,7 @@ int main(int argc,char *argv[])
 			printf("E\n");//读入出错时输出E 
 			break;
 		}
-		b=reserver(cc[cctop]);//读入不一定合法
+		reserver(cc[cctop]);//读入不一定合法
 		if(b==-1)
 		{
 			printf("E\n");//读入出错时输出E 
@@ -155,8 +155,7 @@ int main(int argc,char *argv[])
 				continue;
 			}
 		}
-		stack[stacktop]=b;
-		stacktop++;
+        stacktop++;
 		if(cc[cctop]!='\0')//没读入文件尾字符的时候才要报读入 
 		{
 			printf("I%c\n",cc[cctop]);
